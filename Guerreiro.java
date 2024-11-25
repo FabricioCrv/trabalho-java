@@ -58,13 +58,4 @@ public class Guerreiro extends Personagem implements Combate{
     }
 
 
-    @Override
-    public void primeiraProfissao(String profissao) {
-        System.out.println("Sua profissão primaria é " + profissao);
-    }
-
-    @Override
-    public void segundaProfissao(String profissao) {
-        System.out.println("Sua profissão secundaria é " + profissao);
-    }
 }

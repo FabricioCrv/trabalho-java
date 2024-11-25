@@ -27,8 +27,6 @@ public class Main {
             int selecao = prompt.nextInt();
                 if(selecao == 1){
                     System.out.println("Voce escolheu a classe guerreiro e seu nome é " +guerreiro.nome);
-                    guerreiro.primeiraProfissao("Ferreiro");
-                    guerreiro.segundaProfissao("Mineração");
                     comandante.darMissao();
                     System.out.println("Antes de partir, voce deseja visitar o mercador? 1-sim; 2-nao");
                     boolean condition_2 = false;
@@ -83,8 +81,6 @@ public class Main {
                     }
                 }else if(selecao == 2){
                     System.out.println("Voce escolheu a classe Mago e seu nome é " + mago.nome);
-                    mago.primeiraProfissao("Encantamento");
-                    mago.segundaProfissao("Alfaiataria");
                     comandante.darMissao();
                     System.out.println("Antes de partir, voce deseja visitar o mercador? 1-sim; 2-nao");
                     int selecao2 = prompt.nextInt();
@@ -144,4 +140,5 @@ public class Main {
         }while (condition);
 
     }
+    private static void teste(){}
 }
