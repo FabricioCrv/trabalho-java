@@ -1,8 +1,11 @@
+import java.util.Map;
+
 public class Guerreiro extends Personagem implements Combate{
 
-    public Guerreiro(String nome, String raca,int vida, String arma, int dinheiro, String item) {
-        super(nome, raca,vida, arma, dinheiro, item);
+    public Guerreiro(String nome, String raca,int vida, String arma, int dinheiro) {
+        super(nome, raca,vida, arma, dinheiro);
     }
+
 
 
     @Override
@@ -26,18 +29,6 @@ public class Guerreiro extends Personagem implements Combate{
         System.out.println("Atacando usando a habilidade: " + habilidade);
     }
 
-    @Override
-    public void usarItem(Inventario item) {
-        System.out.println("Você usou o item: " + item);
-        inventario.remove(item);
-    }
-
-    @Override
-    public void jogarItemFora(Inventario item) {
-        System.out.println("Você jogou fora: " + item);
-        inventario.remove(item);
-    }
-
 
     @Override
     public void comprarItem(int custoItem) throws DinheiroInsuficienteException {
@@ -49,6 +40,13 @@ public class Guerreiro extends Personagem implements Combate{
     }
 
     @Override
+    public void mostrarInventario() {
+        for(Map.Entry<Integer, String> item : inventario.entrySet() ){
+            System.out.println(item.getKey() + "-" + item.getValue());
+        }
+    }
+
+    @Override
     public String toString() {
         return "Guerreiro{" +
                 "nome='" + nome + '\'' +
@@ -56,9 +54,17 @@ public class Guerreiro extends Personagem implements Combate{
                 ", vida=" + vida +
                 ", arma='" + arma + '\'' +
                 ", dinheiro=" + dinheiro +
-                ", item='" + item + '\'' +
                 '}';
     }
 
 
+    @Override
+    public void primeiraProfissao(String profissao) {
+        System.out.println("Sua profissão primaria é " + profissao);
+    }
+
+    @Override
+    public void segundaProfissao(String profissao) {
+        System.out.println("Sua profissão secundaria é " + profissao);
+    }
 }

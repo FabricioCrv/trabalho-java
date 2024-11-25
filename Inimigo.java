@@ -1,5 +1,5 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+
 
 public abstract class Inimigo {
     protected String nome;
@@ -11,7 +11,7 @@ public abstract class Inimigo {
         this.pontoVida = pontoVida;
         this.dinheiro = dinheiro;
     }
-    Set<String> possiveisItens = new HashSet<>();
+    ArrayList<String> possiveisItens = new ArrayList<>();
 
 
     public abstract void atacar(String alvo);

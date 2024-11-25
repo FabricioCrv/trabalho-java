@@ -1,24 +1,30 @@
-public abstract class Personagem implements Inventario {
+
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class Personagem implements Profissao{
     protected String nome;
     protected String raca;
     protected int vida;
     protected String arma;
     protected int dinheiro;
-    protected String item;
 
-    public Personagem(String nome, String raca, int vida, String arma, int dinheiro, String item) {
+    Map<Integer,String> inventario = new HashMap<>();
+
+    public Personagem(String nome, String raca, int vida, String arma, int dinheiro) {
         this.nome = nome;
         this.raca = raca;
         this.vida = vida;
         this.arma = arma;
         this.dinheiro = dinheiro;
-        this.item = item;
     }
+
+
 
     public abstract void atacar(String alvo);
     public abstract void atacar(String habilidade, String alvo) throws ManaInsuficienteException;
     public abstract void comprarItem(int custoItem) throws DinheiroInsuficienteException;
-
+    public abstract void mostrarInventario();
     @Override
     public String toString() {
         return "Personagem{" +
@@ -27,7 +33,6 @@ public abstract class Personagem implements Inventario {
                 ", vida=" + vida +
                 ", arma='" + arma + '\'' +
                 ", dinheiro=" + dinheiro +
-                ", item='" + item + '\'' +
                 '}';
     }
 }
