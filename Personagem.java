@@ -1,8 +1,8 @@
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Personagem {
+public abstract class Personagem implements Profissao{
     protected String nome;
     protected String raca;
     protected int vida;

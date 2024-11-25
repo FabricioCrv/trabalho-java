@@ -1,0 +1,4 @@
+Classe: Mago
+Nome: Jaina
+Dinheiro: 100
+Vida: 50

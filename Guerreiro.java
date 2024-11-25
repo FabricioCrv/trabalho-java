@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Map;
 
 public class Guerreiro extends Personagem implements Combate{
@@ -55,6 +56,17 @@ public class Guerreiro extends Personagem implements Combate{
                 ", arma='" + arma + '\'' +
                 ", dinheiro=" + dinheiro +
                 '}';
+    }
+
+
+    @Override
+    public void primeiraProfissao(String profissao) {
+        System.out.println("Sua profissão primaria é " + profissao);
+    }
+
+    @Override
+    public void segundaProfissao(String profissao) {
+        System.out.println("Sua profissão secundaria é " + profissao);
     }
 
 

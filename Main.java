@@ -1,8 +1,9 @@
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Guerreiro guerreiro = new Guerreiro("Varian","humano",100,"Espada",100);
         guerreiro.inventario.put(0, "poção de cura");
         guerreiro.inventario.put(1, "bombas");
@@ -21,12 +22,21 @@ public class Main {
 
         boolean condition = false;
 
+        File arquivo = new File("C:\\Users\\Fabricio Carvalho\\IdeaProjects\\jogo_rpg\\src\\progresso.txt");
+        FileWriter fw = new FileWriter(arquivo);
+        BufferedWriter bw = new BufferedWriter(fw);
+        FileReader fr = new FileReader(arquivo);
+        BufferedReader br = new BufferedReader(fr);
+
+
         Scanner prompt = new Scanner(System.in);
         do{
             System.out.println("Selecione seu personagem (1-Guerreiro; 2-Mago)");
             int selecao = prompt.nextInt();
                 if(selecao == 1){
                     System.out.println("Voce escolheu a classe guerreiro e seu nome é " +guerreiro.nome);
+                    guerreiro.primeiraProfissao("Ferreiro");
+                    guerreiro.segundaProfissao("Mineração");
                     comandante.darMissao();
                     System.out.println("Antes de partir, voce deseja visitar o mercador? 1-sim; 2-nao");
                     boolean condition_2 = false;
@@ -70,7 +80,29 @@ public class Main {
                                 Random random = new Random();
                                 int random_item = random.nextInt(3);
                                 System.out.println("O ladrão foi derrotado! Voce saqueou: " + defias.dinheiro + " peças de ouro e um " + defias.possiveisItens.get(random_item));
+                                guerreiro.dinheiro += defias.dinheiro;
                                 guerreiro.finalizarCombate();
+                                System.out.println("Missao completa! Salvando seu progresso...");
+                                try {
+                                    bw.write("Classe: Guerreiro");
+                                    bw.newLine();
+                                    bw.write("Nome: " + guerreiro.nome);
+                                    bw.newLine();
+                                    bw.write("Dinheiro: " + guerreiro.dinheiro);
+                                    bw.newLine();
+                                    bw.write("Vida: " + guerreiro.vida);
+                                    bw.close();
+                                    fw.close();
+                                    while (br.ready()){
+                                        String linha = br.readLine();
+                                        System.out.println(linha);
+                                    }
+                                    br.close();
+                                    fr.close();
+                                } catch (IOException e){
+                                    e.printStackTrace();
+                                }
+                                System.out.println("Progresso salvo com sucesso!");
                             }
                         } else if (selecao_combate == 2){
                             System.out.println("Que item voce deseja usar?");
@@ -81,6 +113,8 @@ public class Main {
                     }
                 }else if(selecao == 2){
                     System.out.println("Voce escolheu a classe Mago e seu nome é " + mago.nome);
+                    mago.primeiraProfissao("Encantamento");
+                    mago.segundaProfissao("Alfaiataria");
                     comandante.darMissao();
                     System.out.println("Antes de partir, voce deseja visitar o mercador? 1-sim; 2-nao");
                     int selecao2 = prompt.nextInt();
@@ -128,6 +162,26 @@ public class Main {
                                     System.out.println(e.getMessage());
                                     condition = true;
                                 }
+                                System.out.println("Missao completa! Salvando seu progresso...");
+                                try {
+                                    bw.write("Classe: Mago");
+                                    bw.newLine();
+                                    bw.write("Nome: " + mago.nome);
+                                    bw.newLine();
+                                    bw.write("Dinheiro: " + mago.dinheiro);
+                                    bw.newLine();
+                                    bw.write("Vida: " + mago.vida);
+                                    bw.close();
+                                    fw.close();
+                                    while (br.ready()){
+                                        String linha = br.readLine();
+                                        System.out.println(linha);
+                                    }
+                                    br.close();
+                                    fr.close();
+                                } catch (IOException e){
+                                    e.printStackTrace();
+                                }
                             } else if (selecao_combate2 == 2){
                                 System.out.println("Que item voce deseja usar?");
                                 mago.mostrarInventario();
@@ -140,5 +194,6 @@ public class Main {
         }while (condition);
 
     }
-    private static void teste(){}
+
+
 }
