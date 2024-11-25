@@ -1,9 +1,11 @@
+import java.util.Map;
+
 public class Mago extends Personagem implements Combate{
     protected int mana;
 
 
-    public Mago(String nome, String raca, int vida, String arma, int dinheiro, String item, int mana, String feitico) {
-        super(nome, raca, vida, arma, dinheiro, item);
+    public Mago(String nome, String raca, int vida, String arma, int dinheiro, int mana, String feitico) {
+        super(nome, raca, vida, arma, dinheiro);
         this.mana = mana;
     }
 
@@ -24,22 +26,21 @@ public class Mago extends Personagem implements Combate{
 
     @Override
     public void atacar(String habilidade,String alvo) throws ManaInsuficienteException{
-        if (this.mana == 0){
+        int custoMana = 0;
+        if (habilidade == "Meteoro"){
+            custoMana = 100;
+        }
+        if (custoMana > this.mana){
             throw new ManaInsuficienteException();
         }
         System.out.println("Atacando o alvo com o feitiço: " + habilidade);
     }
 
     @Override
-    public void usarItem(Inventario item) {
-        System.out.println("Você usou o item: " + item);
-        inventario.remove(item);
-    }
-
-    @Override
-    public void jogarItemFora(Inventario item) {
-        System.out.println("Você jogou fora: " + item);
-        inventario.remove(item);
+    public void mostrarInventario() {
+        for(Map.Entry<Integer, String> item : inventario.entrySet() ){
+            System.out.println(item.getKey() + "-" + item.getValue());
+        }
     }
 
     @Override
@@ -60,8 +61,17 @@ public class Mago extends Personagem implements Combate{
                 ", vida=" + vida +
                 ", arma='" + arma + '\'' +
                 ", dinheiro=" + dinheiro +
-                ", item='" + item + '\'' +
                 '}';
+    }
+
+    @Override
+    public void primeiraProfissao(String profissao) {
+        System.out.println("Sua profissão primaria é " + profissao);
+    }
+
+    @Override
+    public void segundaProfissao(String profissao) {
+        System.out.println("Sua profissão secundaria é " + profissao);
     }
 }
 
